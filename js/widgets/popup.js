@@ -400,11 +400,14 @@ define( [ "../jquery",
 				else {
 					parsedDst = data.toPage.jqmData( "url" );
 				}
-				toUrl = parsedDst.pathname + parsedDst.search + parsedDst.hash;
 
-				if ( self._myUrl !== toUrl ) {
-					self._onHashChange( true );
-				}
+        if (parsedDst) {
+          toUrl = parsedDst.pathname + parsedDst.search + parsedDst.hash;
+
+          if ( self._myUrl !== toUrl ) {
+            self._onHashChange( true );
+          }
+        }
 			});
 			if ( $.mobile.hashListeningEnabled ) {
 				var activeEntry = $.mobile.urlHistory.getActive(),
