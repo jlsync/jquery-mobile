@@ -5,7 +5,7 @@
 //>>css.structure: ../css/structure/jquery.mobile.button.css
 //>>css.theme: ../css/themes/default/jquery.mobile.theme.css
 
-define( [ "../../jquery", "../../jquery.mobile.widget", "../../jquery.mobile.buttonMarkup"  ], function( $ ) {
+define( [ "jquery", "../../jquery.mobile.widget", "../../jquery.mobile.buttonMarkup"  ], function( $ ) {
 //>>excludeEnd("jqmBuildExclude");
 (function( $, undefined ) {
 
@@ -106,15 +106,15 @@ $.widget( "mobile.button", $.mobile.widget, {
 				});
 		}
 
-        $el.bind({
-            focus: function() {
-                $button.addClass( $.mobile.focusClass );
-            },
+		$el.bind({
+			focus: function() {
+				$button.addClass( $.mobile.focusClass );
+			},
 
-            blur: function() {
-                $button.removeClass( $.mobile.focusClass );
-            }
-        });
+			blur: function() {
+				$button.removeClass( $.mobile.focusClass );
+			}
+		});
 
 		this.refresh();
 	},

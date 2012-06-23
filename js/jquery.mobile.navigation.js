@@ -7,6 +7,7 @@ define( [
 	"jquery",
 	"./jquery.mobile.core",
 	"./jquery.mobile.events",
+	"./jquery.mobile.support",
 	"depend!./jquery.hashchange[jquery]",
 	"./widgets/page",
 	"./jquery.mobile.transition" ], function( $ ) {
@@ -371,7 +372,9 @@ define( [
 		documentBase = $base.length ? path.parseUrl( path.makeUrlAbsolute( $base.attr( "href" ), documentUrl.href ) ) : documentUrl,
 
 		//cache the comparison once.
-		documentBaseDiffers = ( documentUrl.hrefNoHash !== documentBase.hrefNoHash );
+		documentBaseDiffers = ( documentUrl.hrefNoHash !== documentBase.hrefNoHash ),
+
+		getScreenHeight = $.mobile.getScreenHeight;
 
 		//base element management, defined depending on dynamic base tag support
 		var base = $.support.dynamicBaseTag ? {
@@ -530,15 +533,6 @@ define( [
 
 		return promise;
 	}
-
-	//simply set the active page's minimum height to screen height, depending on orientation
-	function getScreenHeight(){
-		// Native innerHeight returns more accurate value for this across platforms,
-		// jQuery version is here as a normalized fallback for platforms like Symbian
-		return window.innerHeight || $( window ).height();
-	}
-
-	$.mobile.getScreenHeight = getScreenHeight;
 
 	//simply set the active page's minimum height to screen height, depending on orientation
 	function resetActivePageHeight(){
@@ -1283,7 +1277,6 @@ define( [
 					removeActiveLinkClass( true );
 					$activeClickedLink = $( link ).closest( ".ui-btn" ).not( ".ui-disabled" );
 					$activeClickedLink.addClass( $.mobile.activeBtnClass );
-					$( "." + $.mobile.activePageClass + " .ui-btn" ).not( link ).blur();
 				}
 			}
 		});
